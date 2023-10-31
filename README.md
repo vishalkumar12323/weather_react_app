@@ -7,6 +7,5 @@ Enjoy!! <br/>
 Leave a star ⭐ :)
 
 <h2>Demo</h2>
-<p align="center">
-<img src="https://github.com/vishalkumar12323/weather_react_app/blob/master/public/images/showWeather.png" width="100%"/>
-</p>
+
+![showWeather](https://github.com/vishalkumar12323/weather_react_app/assets/137691442/5bcf1e01-5b8f-4c11-9db6-e6fdce45d4aa)

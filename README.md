@@ -7,4 +7,3 @@ Enjoy!! <br/>
 Leave a star ⭐ :)
 
 <h2>Demo</h2>
-/public/show weather.png

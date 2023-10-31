@@ -7,4 +7,4 @@ Enjoy!! <br/>
 Leave a star ⭐ :)
 
 <h2>Demo</h2>
-<img src="./images/showWeather.png" width="500">
+![Screenshot of weather react app](public/images/showWeather.png)

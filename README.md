@@ -7,4 +7,4 @@ Enjoy!! <br/>
 Leave a star ⭐ :)
 
 <h2>Demo</h2>
-![Screenshot of weather react app](https://github.com/vishalkumar12323/weather_react_app/public/showWeather.png)
+<img src="./images/showWeather.png" width="500">

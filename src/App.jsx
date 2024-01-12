@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import TopButtons from "./components/TopButtons";
@@ -8,17 +8,21 @@ import TemperatureAndDetails from "./components/TemperatureAndDetails";
 import getFormattedWeatherData from "./services/Services";
 
 const App = () => {
+  // State variables
   const [query, setQuery] = useState({ q: "Dehli" });
   const [units, setUnits] = useState("metric");
   const [weather, setWeather] = useState(null);
 
+  // Fetch weather data on initial render and when query or units change
   useEffect(() => {
     const fetchWeather = async () => {
       const message = query.q ? query.q : "current location.";
 
+      // Display info toast while fetching weather
       toast.info("Fetching weather for " + message);
 
       await getFormattedWeatherData({ ...query, units }).then((data) => {
+        // Fetch weather data and display success toast
         toast.success(
           `Successfully fetched weather for ${data.name}, ${data.country}.`
         );
@@ -29,6 +33,7 @@ const App = () => {
     fetchWeather();
   }, [query, units]);
 
+  // Determine background gradient based on temperature
   const formatBackground = () => {
     if (!weather) return "from-cyan-700 to-blue-700";
     const threshold = units === "metric" ? 22 : 60;

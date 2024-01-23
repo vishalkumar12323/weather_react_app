@@ -1,9 +1,9 @@
-const SearchResultList = () => {
-  return (
-    <>
-      <h3>Hello SearchResultList</h3>
-    </>
-  );
-};
+// const SearchResultList = () => {
+//   return (
+//     <>
+//       <h3>Hello SearchResultList</h3>
+//     </>
+//   );
+// };
 
-export { SearchResultList };
+// export { SearchResultList };

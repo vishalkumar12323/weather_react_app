@@ -1,86 +1,63 @@
-// import { useState } from "react";
-// import { UilSearch, UilLocationPoint } from "@iconscout/react-unicons";
-// import { toast } from "react-toastify";
-// import { SearchResult } from "./SearchResult";
-// import { onSearch } from "../services/Services";
-// const Inputs = ({ units, setUnits, setQuery }) => {
-//   const [city, setCity] = useState("");
+import { useState } from "react";
+import { UilSearch, UilLocationPoint } from "@iconscout/react-unicons";
+import { toast } from "react-toastify";
+const Inputs = ({ units, setUnits, setQuery }) => {
+  const [city, setCity] = useState("");
 
-//   const handleOnChange = async (e) => {
-//     const { value } = e.currentTarget;
-//     setCity(value);
-//     // if (value.length >= "3") {
-//     //   const data = await onSearch(value);
-//     //   console.log(data);
-//     // }
-//   };
-//   const handleUnitsChange = (e) => {
-//     const selectedUnit = e.currentTarget.name;
-//     if (units !== selectedUnit) setUnits(selectedUnit);
-//   };
+  const handleOnChange = async (e) => {
+    const { value } = e.currentTarget;
+    setCity(value);
+  };
+  const handleUnitsChange = (e) => {
+    const selectedUnit = e.currentTarget.name;
+    if (units !== selectedUnit) setUnits(selectedUnit);
+  };
 
-//   const handleSearchClick = () => {
-//     if (city !== "") setQuery({ q: city });
-//     setCity("");
-//   };
+  const handleSearchClick = () => {
+    if (city !== "") setQuery({ q: city });
+    setCity("");
+  };
 
-//   const handleLocationClick = () => {
-//     if (navigator.geolocation) {
-//       toast.info("Fetching users location.");
-//       navigator.geolocation.getCurrentPosition((position) => {
-//         toast.success("Location fetched!");
-//         let lat = position.coords.latitude;
-//         let lon = position.coords.longitude;
+  const handleLocationClick = () => {
+    if (navigator.geolocation) {
+      toast.info("Fetching users location.");
+      navigator.geolocation.getCurrentPosition((position) => {
+        toast.success("Location fetched!");
+        let lat = position.coords.latitude;
+        let lon = position.coords.longitude;
 
-//         setQuery({
-//           lat,
-//           lon,
-//         });
-//       });
-//     }
-//   };
-//   return (
-//     <>
-//       <div className="flex flex-row justify-center mt-1 my-3">
-//         <div className="flex flex-row w-3/4 items-center justify-center space-x-4">
-//           <input
-//             type="text"
-//             className="py-1 px-1 outline-none text-black w-full shadow-md capitalize"
-//             placeholder="search..."
-//             value={city}
-//             onChange={handleOnChange}
-//           />
-//           <UilSearch
-//             className="fa-solid fa-magnifying-glass hover:scale-125 transition hover:cursor-pointer text-[18px]"
-//             onClick={handleSearchClick}
-//           />
-//           <UilLocationPoint
-//             className="fa-solid fa-magnifying-glass hover:scale-125 transition hover:cursor-pointer text-[18px]"
-//             onClick={handleLocationClick}
-//           />
-//         </div>
-//         <div className="flex w-1/4 justify-end items-center">
-//           <button
-//             name="metric"
-//             onClick={handleUnitsChange}
-//             className="text-[1.2rem] font-bold hover:scale-125 transition"
-//           >
-//             &deg;C
-//           </button>
-//           <p className="mx-1">|</p>
-//           <button
-//             name="imperial"
-//             onClick={handleUnitsChange}
-//             className="text-[1.2rem] font-bold hover:scale-125 transition"
-//           >
-//             &deg;F
-//           </button>
-//         </div>
-//       </div>
-//       {/* <div className="w-[30%] max-h-32 fixed overflow-y-auto bg-white shadow-md">
-//         <SearchResult />
-//       </div> */}
-//     </>
-//   );
-// };
-// export default Inputs;
+        setQuery({
+          lat,
+          lon,
+        });
+      });
+    }
+  };
+  return (
+    <>
+      <div className="inputs-bar py-3">
+        <div className="input flex justify-between">
+          <div className="w-[75%] flex gap-1 sm:gap-4 items-center">
+            <input
+              type="text"
+              placeholder="search city..."
+              className="py-2 px-1 w-full rounded-sm outline-none "
+            />
+            <UilSearch className="fa-solid fa-magnifying-glass hover:scale-125 transition hover:cursor-pointer" />
+            <UilLocationPoint className="fa-solid fa-magnifying-glass hover:scale-125 transition hover:cursor-pointer" />
+          </div>
+          <div className="flex gap-2 sm:gap-3 text-xl sm:text-2xl">
+            <button name="metric" className="hover:scale-125 transition">
+              &deg;C
+            </button>
+            <div className="border-l-2 border-black"></div>
+            <button name="imperial" className="hover:scale-125 transition">
+              &deg;F
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+export default Inputs;

@@ -2,8 +2,6 @@
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 // import TopButtons from "./components/TopButtons";
-// import Inputs from "./components/Inputs";
-// import TimeAndLocation from "./components/TimeAndLocation";
 // import TemperatureAndDetails from "./components/TemperatureAndDetails";
 // import getFormattedWeatherData from "./services/Services";
 
@@ -60,92 +58,28 @@
 //   );
 // };
 
-import { UilSearch, UilLocationPoint } from "@iconscout/react-unicons";
-import {
-  UilTemperature,
-  UilTear,
-  UilWind,
-  UilSun,
-  UilSunset,
-} from "@iconscout/react-unicons";
+// import {
+//   UilTemperature,
+//   UilTear,
+//   UilWind,
+//   UilSun,
+//   UilSunset,
+// } from "@iconscout/react-unicons";
+import Inputs from "./components/Inputs";
+import DateAndTime from "./components/DateAndTime";
+import { WeatherAndLocation } from "./components/WeatherAndLocation";
+import TemperatureAndDetails from "./components/TemperatureAndDetails";
+import { AppName } from "./components/AppName";
 
 const App = () => {
   return (
     <>
-      <div className="bg-blue-500 w-full h-[100vh] py-2 px-2 lg:max-w-[768px] lg:mx-auto">
-        <div className="app-name py-2">
-          <h1 className="text-3xl">Cloud Fire</h1>
-        </div>
-        {/* input and search  */}
-        <div className="inputs-bar py-3">
-          <div className="input flex justify-between">
-            <div className="max-w-[75%] flex gap-1 items-center">
-              <input
-                type="text"
-                placeholder="search city..."
-                className="py-2 px-1 w-[100%] rounded-sm outline-none "
-              />
-              <UilSearch />
-              <UilLocationPoint />
-            </div>
-            <div className="flex gap-2 text-xl">
-              <button className="hover:scale-110">&deg;C</button>
-              <div className="border-l-2 border-black"></div>
-              <button className="hover:scale-110">&deg;F</button>
-            </div>
-          </div>
-        </div>
-
-        {/* date and time  */}
-        <div className="mt-3 py-1">
-          <div className="flex justify-around items-center text-xl">
-            <div className="date">
-              <p>Sunday 12 Jan, 2024</p>
-            </div>
-            <div>
-              <p>4:45AM</p>
-            </div>
-          </div>
-        </div>
-
-        {/* weather, weather-icon and weather mood */}
-        <div className="mt-3 py-1">
-          <div className="flex justify-around text-xl">
-            <div className="flex gap-5">
-              <div className="flex">
-                <UilTemperature />
-                <p>45&deg;C</p>
-              </div>
-              <p>ICON</p>
-            </div>
-            <div>
-              <p>SUNNY</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="card mt-10">
-          <div className="">
-            <div className="grid grid-cols-2 gap-x-2 gap-y-5 place-items-center lg:grid-cols-4">
-              <div className="w-36 h-20 bg-blue-600 shadow-md flex flex-col items-center justify-center">
-                <p className="text-xl">Humidity</p>
-                <span className="text-xl">78%</span>
-              </div>
-              <div className="w-36 h-20 bg-blue-600 shadow-md flex flex-col items-center justify-center">
-                <p className="text-xl">Wind-Speed</p>
-                <span className="text-xl">3.9 kph</span>
-              </div>
-              <div className="w-36 h-20 bg-blue-600 shadow-md flex flex-col items-center justify-center">
-                <p className="text-xl">Wind-Speed</p>
-                <span className="text-xl">3.9 kph</span>
-              </div>
-              <div className="w-36 h-20 bg-blue-600 shadow-md flex flex-col items-center justify-center">
-                <p className="text-xl">Wind-Speed</p>
-                <span className="text-xl">3.9 kph</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="bg-blue-500 w-full h-[100vh] py-2 px-2 md:max-w-[768px] md:mx-auto">
+        <AppName />
+        <Inputs />
+        <DateAndTime />
+        <WeatherAndLocation />
+        <TemperatureAndDetails />
       </div>
     </>
   );

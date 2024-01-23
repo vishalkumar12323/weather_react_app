@@ -8,10 +8,10 @@
     font-family: 'Poppins', sans-serif;
   }
 
-  ::-webkit-scrollbar {
+  /* ::-webkit-scrollbar {
     width: 4px;
-  }
-
+  } */
+  /* 
   ::-webkit-scrollbar-track {
     background-color: #ffffff;
   }
@@ -22,5 +22,6 @@
 
   ::-webkit-scrollbar-thumb:hover {
     background-color: #00588b;
-  }
+  } */
+
 }

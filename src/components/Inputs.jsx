@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { UilSearch, UilLocationPoint } from "@iconscout/react-unicons";
 import { toast } from "react-toastify";
+import { SearchResult } from "./SearchResult";
 const Inputs = ({ units, setUnits, setQuery }) => {
   const [city, setCity] = useState("");
 
@@ -31,7 +32,7 @@ const Inputs = ({ units, setUnits, setQuery }) => {
   };
   return (
     <>
-      <div className="flex flex-row justify-center mt-3 my-3">
+      <div className="flex flex-row justify-center mt-1 my-3">
         <div className="flex flex-row w-3/4 items-center justify-center space-x-4">
           <input
             type="text"
@@ -66,6 +67,9 @@ const Inputs = ({ units, setUnits, setQuery }) => {
             &deg;F
           </button>
         </div>
+      </div>
+      <div className="w-[30%] max-h-32 fixed overflow-y-auto bg-white shadow-md">
+        <SearchResult />
       </div>
     </>
   );

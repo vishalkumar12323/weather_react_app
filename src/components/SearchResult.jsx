@@ -1,25 +1,19 @@
-// const SearchResult = () => {
-//   return (
-//     <>
-//       <div className="w-[100%] bg-white text-black z-20">
-//         <div className="list py-2 px-2 hover:bg-[#ddd] border-b my-1">
-//           <span className="cursor-pointer">London, GB</span>
-//         </div>
-//         <div className="list py-2 px-2 hover:bg-[#ddd] border-b my-1">
-//           <span className="cursor-pointer">London, GB</span>
-//         </div>
-//         <div className="list py-2 px-2 hover:bg-[#ddd] border-b my-1">
-//           <span className="cursor-pointer">London, GB</span>
-//         </div>
-//         <div className="list py-2 px-2 hover:bg-[#ddd] border-b my-1">
-//           <span className="cursor-pointer">London, GB</span>
-//         </div>
-//         <div className="list py-2 px-2 hover:bg-[#ddd] border-b my-1">
-//           <span className="cursor-pointer">London, GB</span>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
+import { SearchResultList } from "./SearchResultList";
 
-// export { SearchResult };
+const SearchResult = () => {
+  return (
+    <>
+      <div className="search flex relative justify-between">
+        <div className="w-[75%] flex gap-1 sm:gap-4 absolute text-black">
+          <div className="flex flex-col  gap-1 w-full bg-white max-h-20 overflow-y-auto">
+            <SearchResultList />
+          </div>
+          <div className="text-blue-500 pointer-events-none ">GB</div>
+          <div className="text-blue-500 pointer-events-none text-xl">IN</div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export { SearchResult };

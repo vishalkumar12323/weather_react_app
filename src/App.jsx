@@ -74,12 +74,14 @@ import { AppName } from "./components/AppName";
 const App = () => {
   return (
     <>
-      <div className="bg-blue-500 w-full h-[100vh] py-2 px-2 md:max-w-[768px] md:mx-auto">
-        <AppName />
-        <Inputs />
-        <DateAndTime />
-        <WeatherAndLocation />
-        <TemperatureAndDetails />
+      <div className="bg-blue-500 w-full h-[100vh]">
+        <div className="bg-blue-600 shadow-lg text-white w-full h-full py-2 px-2 md:max-w-[768px] md:mx-auto">
+          <AppName />
+          <Inputs />
+          <DateAndTime />
+          <WeatherAndLocation />
+          <TemperatureAndDetails />
+        </div>
       </div>
     </>
   );

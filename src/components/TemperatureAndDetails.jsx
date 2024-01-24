@@ -1,4 +1,4 @@
-import { formateToLocalTime } from "../services/Services";
+// import { formateToLocalTime } from "../services/Services";
 import {
   UilTemperature,
   UilTear,
@@ -6,99 +6,74 @@ import {
   UilSun,
   UilSunset,
 } from "@iconscout/react-unicons";
-import { iconUrlFromCode } from "../services/Services";
-import { Card } from "./Card";
+// import { iconUrlFromCode } from "../services/Services";
 
 const TemperatureAndDetails = () => {
   return (
     <>
-      {/* <div className="flex justify-between items-start py-2 font-light">
-        <div className=" py-2">
-          <div className="flex justify-center items-center  shadow-xl py-2 px-1 my-2">
-            <img
-              src={iconUrlFromCode(icon)}
-              alt="Weather-icon"
-              className="w-[4rem]"
-            />
-          </div>
-          <div className="flex justify-center items-center shadow-xl py-5 px-16 my-5">
-            <p className="text-3xl">
-              {temp.toFixed()}&deg;{units === "metric" ? "C" : "F"}
-            </p>
-          </div>
-          <div className="flex justify-center items-center shadow-xl my-5 py-5 px-16">
-            <p className="text-[1.4rem]">{details}</p>
-          </div>
-          <div className="flex justify-center items-center shadow-xl py-6 px-16">
-            <i className="fa-solid fa-arrow-up"></i>
-            <p className="ml-1">
-              High:{" "}
-              <span>
-                {temp_max.toFixed()} &deg;{units === "metric" ? "C" : "F"}
-              </span>
-            </p>
-          </div>
-        </div>
-        <div className=" py-2">
-          <div className="flex justify-center items-center   shadow-xl my-2 py-7 px-8">
-            <UilWind />
-            Wind:
-            <span className="font-medium ml-1">{speed}km/h</span>
-          </div>
-          <div className="flex justify-center items-center   shadow-xl my-5 py-7 px-8">
-            <UilTear />
-            Humidity
-            <span className="font-medium ml-1"> {humidity}%</span>
-          </div>
-          <div className="flex justify-center items-center   shadow-xl py-6 px-8 my-5">
-            <UilTemperature />
-            Real feel:
-            <span className="font-medium ml-1">
-              {" "}
-              {feels_like.toFixed()} &deg;
-            </span>
-          </div>
-          <div className="flex justify-center items-center   shadow-xl py-6 px-8 ">
-            <i className="fa-solid fa-arrow-down"></i>
-            <p className="ml-1">
-              Low:{" "}
-              <span>
-                {temp_min.toFixed()}&deg;{units === "metric" ? "C" : "F"}
-              </span>
-            </p>
-          </div>
-        </div>
-        <div className=" py-2">
-          <div className="flex justify-center items-center   shadow-xl my-2 py-7 px-8">
-            <UilSun className=" " />
-            <p>
-              Rise:{" "}
-              <span>{formateToLocalTime(sunrise, timezone, "hh:mm a")} </span>
-            </p>
-          </div>
-          <div className="flex justify-center items-center   shadow-xl my-5 py-7 px-8">
-            <UilSunset className=" " />
-            <p>
-              Set:{" "}
-              <span>{formateToLocalTime(sunset, timezone, "hh:mm a")}</span>
-            </p>
-          </div>
-          <div className="flex justify-center items-center   shadow-xl py-6 px-8 my-5">
-            <p>
-              Pressure: <span>{pressure}%</span>
-            </p>
-          </div>
-          <div className="flex justify-center items-center   shadow-xl py-6 px-8 ">
-            <p>
-              Visibility: <span>{visibility}mi</span>
-            </p>
-          </div>
-        </div>
-      </div> */}
-
-      <div className="card mt-10">
+      <div className="card mt-7 sm:1">
         <div className="grid grid-cols-2  gap-y-5 place-items-center sm:grid-cols-3">
-          <Card />
+          <div className="w-[10rem] sm:w-48 h-20 sm:h-[4.5rem] bg-blue-600 shadow-md flex flex-col items-center justify-center">
+            <div className="flex items-center gap-1">
+              <i className="fa-solid fa-arrow-up"></i>
+              <p className="text-xl">High</p>
+            </div>
+            <span className="text-xl">45&deg;C</span>
+          </div>
+          <div className="w-[10rem] sm:w-48 h-20 sm:h-[4.5rem] bg-blue-600 shadow-md flex flex-col items-center justify-center">
+            <div className="flex items-center gap-1">
+              <i className="fa-solid fa-arrow-down"></i>
+              <p className="text-xl">Low</p>
+            </div>
+            <span className="text-xl">41&deg;C</span>
+          </div>
+          <div className="w-[10rem] sm:w-48 h-20 sm:h-[4.5rem] bg-blue-600 shadow-md flex flex-col items-center justify-center">
+            <div className="flex items-center gap-1">
+              <UilTemperature />
+              <p className="text-xl">Feels-Like</p>
+            </div>
+            <span className="text-xl">40&deg;C</span>
+          </div>
+          <div className="w-[10rem] sm:w-48 h-20 sm:h-[4.5rem] bg-blue-600 shadow-md flex flex-col items-center justify-center">
+            <div className="flex items-center gap-1">
+              <UilWind />
+              <p className="text-xl">Speed</p>
+            </div>
+            <span className="text-xl">3.9 kph</span>
+          </div>
+          <div className="w-[10rem] sm:w-48 h-20 sm:h-[4.5rem] bg-blue-600 shadow-md flex flex-col items-center justify-center">
+            <p className="text-xl">Pressure</p>
+            <span className="text-xl">500</span>
+          </div>
+          <div className="w-[10rem] sm:w-48 h-20 sm:h-[4.5rem] bg-blue-600 shadow-md flex flex-col items-center justify-center">
+            <p className="text-xl">Visibility</p>
+            <span className="text-xl">5000 mi</span>
+          </div>
+          <div className="w-[10rem] sm:w-48 h-20 sm:h-[4.5rem] bg-blue-600 shadow-md flex flex-col items-center justify-center">
+            <div className="flex items-center gap-1">
+              <UilTear />
+              <p className="text-xl">Humidity</p>
+            </div>
+            <span className="text-xl">18&deg;</span>
+          </div>
+          <div className="w-[10rem] sm:w-48 h-20 sm:h-[4.5rem] bg-blue-600 shadow-md flex flex-col items-center justify-center">
+            <p className="text-xl">Rain</p>
+            <span className="text-xl">15%</span>
+          </div>
+          <div className="w-[10rem] sm:w-48 h-20 sm:h-[4.5rem] bg-blue-600 shadow-md flex flex-col items-center justify-center">
+            <div className="flex items-center gap-1">
+              <UilSun />
+              <p className="text-xl">Sun Rise</p>
+            </div>
+            <span className="text-xl">6:30AM</span>
+          </div>
+          <div className="w-[10rem] sm:w-48 h-20 sm:h-[4.5rem] bg-blue-600 shadow-md flex flex-col items-center justify-center">
+            <div className="flex items-center gap-1">
+              <UilSunset />
+              <p className="text-xl">Sun Set</p>
+            </div>
+            <span className="text-xl">6:45PM</span>
+          </div>
         </div>
       </div>
     </>

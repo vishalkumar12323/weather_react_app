@@ -4,7 +4,7 @@ import { formateToLocalTime } from "../services/Services";
 const DateAndTime = () => {
   return (
     <>
-      <div className="mt-3 sm:mt-8 py-1">
+      <div className="mt-1 py-1">
         <div className="flex justify-around sm:justify-center sm:gap-10 items-center text-xl sm:text-2xl">
           <div className="date">
             <p>Sunday 12 Jan, 2024</p>

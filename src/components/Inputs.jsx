@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { UilSearch, UilLocationPoint } from "@iconscout/react-unicons";
 import { toast } from "react-toastify";
+import { SearchResult } from "./SearchResult";
 const Inputs = ({ units, setUnits, setQuery }) => {
   const [city, setCity] = useState("");
 
@@ -35,13 +36,13 @@ const Inputs = ({ units, setUnits, setQuery }) => {
   };
   return (
     <>
-      <div className="inputs-bar py-3">
+      <div className="inputs-bar py-3 sm:py-1">
         <div className="input flex justify-between">
           <div className="w-[75%] flex gap-1 sm:gap-4 items-center">
             <input
               type="text"
               placeholder="search city..."
-              className="py-2 px-1 w-full rounded-sm outline-none "
+              className="py-2 px-1 w-full rounded-sm outline-none text-black "
             />
             <UilSearch className="fa-solid fa-magnifying-glass hover:scale-125 transition hover:cursor-pointer" />
             <UilLocationPoint className="fa-solid fa-magnifying-glass hover:scale-125 transition hover:cursor-pointer" />
@@ -50,13 +51,14 @@ const Inputs = ({ units, setUnits, setQuery }) => {
             <button name="metric" className="hover:scale-125 transition">
               &deg;C
             </button>
-            <div className="border-l-2 border-black"></div>
+            <div className="border-l-2 border-white"></div>
             <button name="imperial" className="hover:scale-125 transition">
               &deg;F
             </button>
           </div>
         </div>
       </div>
+      {city ? <SearchResult /> : null}
     </>
   );
 };

@@ -9,7 +9,7 @@ import {
 const WeatherAndLocation = () => {
   return (
     <>
-      <div className="mt-3 sm:mt-5 py-1">
+      <div className="mt-2 py-1">
         <div className="flex justify-around sm:justify-center gap-3 sm:gap-5 text-xl sm:text-2xl">
           <div className="flex gap-3">
             <div className="flex">
@@ -23,7 +23,7 @@ const WeatherAndLocation = () => {
           </div>
         </div>
 
-        <div className="flex justify-center items-center mt-4">
+        <div className="flex justify-center items-center mt-2">
           <p className="text-2xl">London, GB</p>
         </div>
       </div>

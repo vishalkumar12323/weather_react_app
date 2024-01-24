@@ -67,10 +67,18 @@ const App = () => {
   const [query, setQuery] = useState({ location: "Jaipur" });
   const [units, setUnits] = useState("metric");
   const [weather, setWeather] = useState(null);
+  console.log(weather);
 
   // Fetch weather data on initial render and when query or units change
   useEffect(() => {
-    const fetchWeather = async () => {};
+    const fetchWeather = async () => {
+      const message = query.location ? query.location : "current location";
+
+      const data = await getFormattedWeatherData({ ...query, units });
+      console.log(data);
+      setWeather(data);
+    };
+    fetchWeather();
   }, [query, units]);
 
   return (
@@ -78,11 +86,12 @@ const App = () => {
       <div className="bg-blue-500 w-full h-[100vh]">
         <div className="bg-blue-600 shadow-lg text-white w-full h-full py-2 px-2 md:max-w-[768px] md:mx-auto">
           <AppName />
-          <Inputs />
-          <DateAndTime />
-          <WeatherAndLocation />
-          <TemperatureAndDetails />
+          <Inputs units={units} setUnits={setUnits} setQuery={setQuery} />
+          <DateAndTime weather={weather} />
+          <WeatherAndLocation weather={weather} />
+          <TemperatureAndDetails weather={weather} />
         </div>
+        <ToastContainer theme="colored" newestOnTop={true} autoClose={3000} />
       </div>
     </>
   );

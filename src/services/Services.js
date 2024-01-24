@@ -3,8 +3,8 @@ import { DateTime } from "luxon";
 const getWeatherData = async (infoType, searchParams) => {
   const url = new URL(api.BASE + infoType + "?");
   url.search = new URLSearchParams({ ...searchParams, appid: api.API_KEY });
-
   const res = await fetch(url);
+  console.log(res);
   return await res.json();
 };
 
@@ -58,12 +58,12 @@ const formateToLocalTime = (
 ) => DateTime.fromSeconds(secs).setZone(zons).toFormat(formate);
 
 // https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
-const onSearch = async (city) => {
-  const response = await fetch(
-    `${api.BASE}weather?q=${city}&appid=${api.API_KEY}`
-  );
-  const data = await response.json();
-  return data;
-};
-export { iconUrlFromCode, formateToLocalTime, onSearch };
+// const onSearch = async (city) => {
+//   const response = await fetch(
+//     `${api.BASE}weather?q=${city}&appid=${api.API_KEY}`
+//   );
+//   const data = await response.json();
+//   return data;
+// };
+export { iconUrlFromCode, formateToLocalTime };
 export default getFormattedWeatherData;

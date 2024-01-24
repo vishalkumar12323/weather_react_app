@@ -15,7 +15,7 @@ const Inputs = ({ units, setUnits, setQuery }) => {
   };
 
   const handleSearchClick = () => {
-    if (city !== "") setQuery({ q: city });
+    if (city !== "") setQuery({ location: city });
     setCity("");
   };
 
@@ -40,19 +40,34 @@ const Inputs = ({ units, setUnits, setQuery }) => {
         <div className="input flex justify-between">
           <div className="w-[75%] flex gap-1 sm:gap-4 items-center">
             <input
+              onChange={handleOnChange}
               type="text"
               placeholder="search city..."
               className="py-2 px-1 w-full rounded-sm outline-none text-black "
             />
-            <UilSearch className="fa-solid fa-magnifying-glass hover:scale-125 transition hover:cursor-pointer" />
-            <UilLocationPoint className="fa-solid fa-magnifying-glass hover:scale-125 transition hover:cursor-pointer" />
+            <UilSearch
+              className="fa-solid fa-magnifying-glass hover:scale-125 transition hover:cursor-pointer"
+              onClick={handleSearchClick}
+            />
+            <UilLocationPoint
+              className="fa-solid fa-magnifying-glass hover:scale-125 transition hover:cursor-pointer"
+              onClick={handleLocationClick}
+            />
           </div>
           <div className="flex gap-2 sm:gap-3 text-xl sm:text-2xl">
-            <button name="metric" className="hover:scale-125 transition">
+            <button
+              name="metric"
+              className="hover:scale-125 transition"
+              onClick={handleUnitsChange}
+            >
               &deg;C
             </button>
             <div className="border-l-2 border-white"></div>
-            <button name="imperial" className="hover:scale-125 transition">
+            <button
+              name="imperial"
+              className="hover:scale-125 transition"
+              onClick={handleUnitsChange}
+            >
               &deg;F
             </button>
           </div>

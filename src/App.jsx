@@ -1,11 +1,15 @@
-// import { useState, useEffect } from "react";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-// import TopButtons from "./components/TopButtons";
-// import TemperatureAndDetails from "./components/TemperatureAndDetails";
-// import getFormattedWeatherData from "./services/Services";
+import { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import TemperatureAndDetails from "./components/TemperatureAndDetails";
+import Inputs from "./components/Inputs";
+import getFormattedWeatherData from "./services/Services";
+import { WeatherAndLocation } from "./components/WeatherAndLocation";
+import { AppName } from "./components/AppName";
+import DateAndTime from "./components/DateAndTime";
 
-// const App = () => {
+// const Apps = () => {
+
 //   // State variables
 //   const [query, setQuery] = useState({ q: "Dehli" });
 //   const [units, setUnits] = useState("metric");
@@ -58,20 +62,17 @@
 //   );
 // };
 
-// import {
-//   UilTemperature,
-//   UilTear,
-//   UilWind,
-//   UilSun,
-//   UilSunset,
-// } from "@iconscout/react-unicons";
-import Inputs from "./components/Inputs";
-import DateAndTime from "./components/DateAndTime";
-import { WeatherAndLocation } from "./components/WeatherAndLocation";
-import TemperatureAndDetails from "./components/TemperatureAndDetails";
-import { AppName } from "./components/AppName";
-
 const App = () => {
+  // state variables
+  const [query, setQuery] = useState({ location: "Jaipur" });
+  const [units, setUnits] = useState("metric");
+  const [weather, setWeather] = useState(null);
+
+  // Fetch weather data on initial render and when query or units change
+  useEffect(() => {
+    const fetchWeather = async () => {};
+  }, [query, units]);
+
   return (
     <>
       <div className="bg-blue-500 w-full h-[100vh]">

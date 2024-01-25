@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { useQuery, gql } from "@apollo/client";
 import "react-toastify/dist/ReactToastify.css";
 import TemperatureAndDetails from "./components/TemperatureAndDetails";
 import Inputs from "./components/Inputs";
@@ -67,7 +68,17 @@ const App = () => {
   const [query, setQuery] = useState({ location: "Jaipur" });
   const [units, setUnits] = useState("metric");
   const [weather, setWeather] = useState(null);
+
   console.log(weather);
+
+  const GET_DATA = gql`
+    query getData {
+      Hello { }
+    }
+  `;
+  const { loading, error, data } = useQuery(GET_DATA);
+  if (error) console.log("err ", error);
+  if (data) console.log("data ", data);
 
   // Fetch weather data on initial render and when query or units change
   useEffect(() => {
@@ -78,7 +89,7 @@ const App = () => {
       console.log(data);
       setWeather(data);
     };
-    fetchWeather();
+    // fetchWeather();
   }, [query, units]);
 
   return (

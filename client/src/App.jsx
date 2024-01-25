@@ -72,11 +72,13 @@ const App = () => {
   console.log(weather);
 
   const GET_DATA = gql`
-    query getData {
-      Hello { }
+    query Weather($location: String!) {
+      getWeather(location: $location)
     }
   `;
-  const { loading, error, data } = useQuery(GET_DATA);
+  const { loading, error, data } = useQuery(GET_DATA, {
+    variables: { location: "London" },
+  });
   if (error) console.log("err ", error);
   if (data) console.log("data ", data);
 

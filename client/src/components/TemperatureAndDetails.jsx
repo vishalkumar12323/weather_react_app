@@ -24,7 +24,7 @@ const TemperatureAndDetails = ({ weather }) => {
   } = weather;
   return (
     <>
-      {weather ? (
+      {temp_max && sunset ? (
         <div className="card mt-7 sm:1">
           <div className="grid grid-cols-2  gap-y-5 place-items-center sm:grid-cols-3">
             <div className="w-[10rem] sm:w-48 h-20 sm:h-[4.5rem] bg-blue-600 shadow-md flex flex-col items-center justify-center">

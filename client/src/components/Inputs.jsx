@@ -21,12 +21,12 @@ const Inputs = ({ units, setQuery, setUnits }) => {
 
   const handleLocationClick = () => {
     if (navigator.geolocation) {
-      toast.info("Fetching users location.");
+      // toast.info("Fetching users location.");
       navigator.geolocation.getCurrentPosition((position) => {
         let lat = position.coords.latitude;
         let lon = position.coords.longitude;
 
-        toast.success("Location fetched!");
+        // toast.success("Location fetched!");
         setQuery({ lat, lon });
       });
     }

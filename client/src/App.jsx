@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import { useQuery } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import "react-toastify/dist/ReactToastify.css";
 import TemperatureAndDetails from "./components/TemperatureAndDetails";
 import Inputs from "./components/Inputs";
 import { WeatherAndLocation } from "./components/WeatherAndLocation";
 import { AppName } from "./components/AppName";
 import DateAndTime from "./components/DateAndTime";
-import { GET_DATA } from "./queries/queries";
-import { formateCurrentWeather } from "./services/Services";
+// import { GET_DATA } from "./queries/queries";
 
 // const Apps = () => {
 
@@ -64,9 +63,31 @@ import { formateCurrentWeather } from "./services/Services";
 //   );
 // };
 
+const GET_DATA = gql`
+  query Weather($location: search) {
+    Weather(location: $location) {
+      temp: Float
+      temp_max: Float
+      temp_min: Float
+      humidity: Int
+      feels_like: Float
+      pressure: Int
+      visibility: Int
+      dt: Int
+      timezone: Int
+      name: String
+      country: String
+      sunrise: Int
+      sunset: Int
+      details: String
+      icon: String
+      speed: Float
+    }
+  }
+`;
 const App = () => {
   // state variables
-  const [query, setQuery] = useState({ q: "London" });
+  const [query, setQuery] = useState({ q: "Jaipur" });
   const [units, setUnits] = useState("metric");
   const [error, setError] = useState(null);
   const [weather, setWeather] = useState(null);
@@ -75,7 +96,8 @@ const App = () => {
   const { loading, err, data } = useQuery(GET_DATA, {
     variables: { location: searchParams },
   });
-
+  if (loading) console.log("loading...");
+  if (data) console.log(data);
   // Fetch weather data on initial render and when query or units change
   useEffect(() => {
     setSearchParams({ ...query, units });
@@ -83,9 +105,10 @@ const App = () => {
       const message = query.q ? query.q : "current location";
 
       // Display info toast while fetching weather
-      toast.info("Fetching weather for " + message);
-      const formattedWeatherData = formateCurrentWeather(data.Weather);
-      setWeather(formattedWeatherData);
+      // toast.info("Fetching weather for " + message);
+      // toast.success(
+      //   `Successfully fetched weather for ${formattedWeatherData.name}, ${formattedWeatherData.country}.`
+      // );
       setError(err?.message);
     };
     fetchWeather();
@@ -96,9 +119,13 @@ const App = () => {
         <div className="bg-blue-600 shadow-lg text-white w-full h-full py-2 px-2 md:max-w-[768px] md:mx-auto">
           <AppName />
           <Inputs units={units} setUnits={setUnits} setQuery={setQuery} />
-          <DateAndTime weather={weather} />
-          <WeatherAndLocation weather={weather} error={error} />
-          <TemperatureAndDetails weather={weather} error={error} />
+          {weather && (
+            <>
+              <DateAndTime weather={weather} />
+              <WeatherAndLocation weather={weather} error={error} />
+              <TemperatureAndDetails weather={weather} error={error} />
+            </>
+          )}
         </div>
         <ToastContainer theme="colored" newestOnTop={true} autoClose={3000} />
       </div>

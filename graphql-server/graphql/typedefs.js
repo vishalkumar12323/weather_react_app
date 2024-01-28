@@ -1,5 +1,3 @@
-import { gql } from "apollo-server-express";
-
 const typeDefs = `
   input search {
     q: String
@@ -7,36 +5,24 @@ const typeDefs = `
     lon: Float
     units: String
   }
-  type main {
+
+  type weather {
     temp: Float
-    feels_like: Float
-    temp_min: Float
     temp_max: Float
-    pressure: Int
+    temp_min: Float
     humidity: Int
-  }
-  type Details {
-    main: String
-    icon: String
-  }
-  type wind {
-    speed: Float
-  }
-  type system {
+    feels_like: Float
+    pressure: Int
+    visibility: Int,
+    dt: Int
+    timezone: Int
+    name: String
     country: String
     sunrise: Int
     sunset: Int
-  }
-
-  type weather {
-    name: String
-    visibility: Int
-    main: main
-    weather: [Details]
-    wind: wind
-    dt: Int
-    sys: system
-    timezone: Int
+    details: String
+    icon: String
+    speed: Float
   }
 `;
 export { typeDefs };

@@ -26,6 +26,8 @@ const init = async () => {
     },
   });
 
+  // const weather = await WeatherServices.fetchWeather();
+  // console.log(weather);
   await server.start();
   app.use(express.json());
   app.use(core());

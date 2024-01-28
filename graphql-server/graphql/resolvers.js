@@ -1,13 +1,11 @@
-const data = [
-  {
-    id: "1",
-    name: "GraphQL",
-    message: "Hello GraphQL",
-  },
-];
+import { WeatherServices } from "../services/services.js";
 
 const queries = {
-  Hello: () => data,
+  Weather: async (_parent, query) => {
+    const { location } = query;
+    const weatherData = await WeatherServices.fetchWeather({ ...location });
+    return weatherData;
+  },
 };
 
 export const resolvers = { queries };

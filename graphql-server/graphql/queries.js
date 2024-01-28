@@ -1,6 +1,7 @@
 import { gql } from "apollo-server-express";
 
 const queries = `
-  getWeather(city: String!): [Weather]
+  Weather(location: search): weather
 `;
+
 export { queries };

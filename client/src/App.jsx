@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import "react-toastify/dist/ReactToastify.css";
 import TemperatureAndDetails from "./components/TemperatureAndDetails";
 import Inputs from "./components/Inputs";
-import getFormattedWeatherData from "./services/Services";
 import { WeatherAndLocation } from "./components/WeatherAndLocation";
 import { AppName } from "./components/AppName";
 import DateAndTime from "./components/DateAndTime";
+import { GET_DATA } from "./queries/queries";
+import { formateCurrentWeather } from "./services/Services";
 
 // const Apps = () => {
 
@@ -24,11 +25,11 @@ import DateAndTime from "./components/DateAndTime";
 //       // Display info toast while fetching weather
 //       toast.info("Fetching weather for " + message);
 
-//       await getFormattedWeatherData({ ...query, units }).then((data) => {
-//         // Fetch weather data and display success toast
-//         toast.success(
-//           `Successfully fetched weather for ${data.name}, ${data.country}.`
-//         );
+// await getFormattedWeatherData({ ...query, units }).then((data) => {
+//   // Fetch weather data and display success toast
+//   toast.success(
+//     `Successfully fetched weather for ${data.name}, ${data.country}.`
+//   );
 //         setWeather(data);
 //       });
 //     };
@@ -65,44 +66,39 @@ import DateAndTime from "./components/DateAndTime";
 
 const App = () => {
   // state variables
-  const [query, setQuery] = useState({ location: "Jaipur" });
+  const [query, setQuery] = useState({ q: "London" });
   const [units, setUnits] = useState("metric");
+  const [error, setError] = useState(null);
   const [weather, setWeather] = useState(null);
+  const [searchParams, setSearchParams] = useState(null);
 
-  console.log(weather);
-
-  const GET_DATA = gql`
-    query Weather($location: String!) {
-      getWeather(location: $location)
-    }
-  `;
-  const { loading, error, data } = useQuery(GET_DATA, {
-    variables: { location: "London" },
+  const { loading, err, data } = useQuery(GET_DATA, {
+    variables: { location: searchParams },
   });
-  if (error) console.log("err ", error);
-  if (data) console.log("data ", data);
 
   // Fetch weather data on initial render and when query or units change
   useEffect(() => {
+    setSearchParams({ ...query, units });
     const fetchWeather = async () => {
-      const message = query.location ? query.location : "current location";
+      const message = query.q ? query.q : "current location";
 
-      const data = await getFormattedWeatherData({ ...query, units });
-      console.log(data);
-      setWeather(data);
+      // Display info toast while fetching weather
+      toast.info("Fetching weather for " + message);
+      const formattedWeatherData = formateCurrentWeather(data.Weather);
+      setWeather(formattedWeatherData);
+      setError(err?.message);
     };
-    // fetchWeather();
+    fetchWeather();
   }, [query, units]);
-
   return (
     <>
-      <div className="bg-blue-500 w-full h-[100vh]">
+      <div className="bg-blue-500 w-full h-auto">
         <div className="bg-blue-600 shadow-lg text-white w-full h-full py-2 px-2 md:max-w-[768px] md:mx-auto">
           <AppName />
           <Inputs units={units} setUnits={setUnits} setQuery={setQuery} />
           <DateAndTime weather={weather} />
-          <WeatherAndLocation weather={weather} />
-          <TemperatureAndDetails weather={weather} />
+          <WeatherAndLocation weather={weather} error={error} />
+          <TemperatureAndDetails weather={weather} error={error} />
         </div>
         <ToastContainer theme="colored" newestOnTop={true} autoClose={3000} />
       </div>

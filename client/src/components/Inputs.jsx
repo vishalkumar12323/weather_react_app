@@ -2,7 +2,7 @@ import { useState } from "react";
 import { UilSearch, UilLocationPoint } from "@iconscout/react-unicons";
 import { toast } from "react-toastify";
 import { SearchResult } from "./SearchResult";
-const Inputs = ({ units, setUnits, setQuery }) => {
+const Inputs = ({ units, setQuery, setUnits }) => {
   const [city, setCity] = useState("");
 
   const handleOnChange = async (e) => {
@@ -15,7 +15,7 @@ const Inputs = ({ units, setUnits, setQuery }) => {
   };
 
   const handleSearchClick = () => {
-    if (city !== "") setQuery({ location: city });
+    if (city !== "") setQuery({ q: city });
     setCity("");
   };
 
@@ -23,14 +23,11 @@ const Inputs = ({ units, setUnits, setQuery }) => {
     if (navigator.geolocation) {
       toast.info("Fetching users location.");
       navigator.geolocation.getCurrentPosition((position) => {
-        toast.success("Location fetched!");
         let lat = position.coords.latitude;
         let lon = position.coords.longitude;
 
-        setQuery({
-          lat,
-          lon,
-        });
+        toast.success("Location fetched!");
+        setQuery({ lat, lon });
       });
     }
   };
@@ -41,6 +38,7 @@ const Inputs = ({ units, setUnits, setQuery }) => {
           <div className="w-[75%] flex gap-1 sm:gap-4 items-center">
             <input
               onChange={handleOnChange}
+              value={city}
               type="text"
               placeholder="search city..."
               className="py-2 px-1 w-full rounded-sm outline-none text-black "

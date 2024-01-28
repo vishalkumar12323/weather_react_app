@@ -1,12 +1,8 @@
-import {
-  UilTemperature,
-  UilTear,
-  UilWind,
-  UilSun,
-  UilSunset,
-} from "@iconscout/react-unicons";
+import { UilTemperature } from "@iconscout/react-unicons";
+import { iconUrlFromCode } from "../services/Services";
 
-const WeatherAndLocation = () => {
+const WeatherAndLocation = ({ weather }) => {
+  const { temp, icon, details, name, country } = weather;
   return (
     <>
       <div className="mt-2 py-1">
@@ -14,17 +10,19 @@ const WeatherAndLocation = () => {
           <div className="flex gap-3">
             <div className="flex">
               <UilTemperature />
-              <p>45&deg;C</p>
+              <p>{temp}&deg;C</p>
             </div>
-            <p>ICON</p>
+            <img src={iconUrlFromCode(icon)} alt={details + "weather icon"} />
           </div>
           <div>
-            <p>SUNNY</p>
+            <p>{details}</p>
           </div>
         </div>
 
         <div className="flex justify-center items-center mt-2">
-          <p className="text-2xl">London, GB</p>
+          <p className="text-2xl">
+            {name}, {country}
+          </p>
         </div>
       </div>
     </>

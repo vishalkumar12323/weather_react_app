@@ -1,12 +1,4 @@
-import api from "../../api";
 import { DateTime } from "luxon";
-const getWeatherData = async (infoType, searchParams) => {
-  const url = new URL(api.BASE + infoType + "?");
-  url.search = new URLSearchParams({ ...searchParams, appid: api.API_KEY });
-  const res = await fetch(url);
-  console.log(res);
-  return await res.json();
-};
 
 const formateCurrentWeather = (data) => {
   const {
@@ -40,14 +32,7 @@ const formateCurrentWeather = (data) => {
     speed,
   };
 };
-const getFormattedWeatherData = async (searchParams) => {
-  const formattedCurrentWeather = await getWeatherData(
-    `weather`,
-    searchParams
-  ).then(formateCurrentWeather);
 
-  return { ...formattedCurrentWeather };
-};
 const iconUrlFromCode = (code) =>
   `http://openweathermap.org/img/wn/${code}@2x.png`;
 
@@ -57,13 +42,4 @@ const formateToLocalTime = (
   formate = "ccc, dd LLL yyyy' | Local time: 'hh:mm a"
 ) => DateTime.fromSeconds(secs).setZone(zons).toFormat(formate);
 
-// https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
-// const onSearch = async (city) => {
-//   const response = await fetch(
-//     `${api.BASE}weather?q=${city}&appid=${api.API_KEY}`
-//   );
-//   const data = await response.json();
-//   return data;
-// };
-export { iconUrlFromCode, formateToLocalTime };
-export default getFormattedWeatherData;
+export { iconUrlFromCode, formateToLocalTime, formateCurrentWeather };

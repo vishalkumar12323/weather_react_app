@@ -41,7 +41,7 @@ const Inputs = ({ units, setQuery, setUnits }) => {
               value={city}
               type="text"
               placeholder="search city..."
-              className="py-2 px-1 w-full rounded-sm outline-none text-black "
+              className="py-2 px-1 w-full rounded-sm outline-none text-black capitalize"
             />
             <UilSearch
               className="fa-solid fa-magnifying-glass hover:scale-125 transition hover:cursor-pointer"

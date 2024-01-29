@@ -1,5 +1,14 @@
 import { DateTime } from "luxon";
 import API from "../../api";
+import axios from "axios";
+
+const getWeather = async (type, searchQuery) => {
+  const url = new URL(API.BASE + type + "?");
+  url.search = new URLSearchParams({ ...searchQuery, appid: API.API_KEY });
+
+  const response = await axios.get(url);
+  return response.data;
+};
 
 const formateCurrentWeather = (data) => {
   const {
@@ -34,6 +43,13 @@ const formateCurrentWeather = (data) => {
   };
 };
 
+const getFormattedWeather = async (searchQuery) => {
+  const formattedCurrentWeather = await getWeather(`weather`, searchQuery).then(
+    formateCurrentWeather
+  );
+
+  return { ...formattedCurrentWeather };
+};
 const iconUrlFromCode = (code) =>
   `http://openweathermap.org/img/wn/${code}@2x.png`;
 
@@ -43,4 +59,4 @@ const formateToLocalTime = (
   formate = "ccc, dd LLL yyyy' | Local time: 'hh:mm a"
 ) => DateTime.fromSeconds(secs).setZone(zons).toFormat(formate);
 
-export { iconUrlFromCode, formateToLocalTime };
+export { iconUrlFromCode, formateToLocalTime, getFormattedWeather };

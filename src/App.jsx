@@ -10,35 +10,37 @@ import { getFormattedWeather } from "./services/Services";
 
 const App = () => {
   // state variables
-  const [query, setQuery] = useState({ q: "Mumbai" });
+  const [query, setQuery] = useState({ q: "Dehli" });
   const [units, setUnits] = useState("metric");
-  const [error, setError] = useState(null);
   const [weather, setWeather] = useState(null);
 
+  // Fetch weather data on initial render and when query or units change
   useEffect(() => {
     const fetchWeather = async () => {
       const popUpMessage = query.q ? query.q : "current location";
 
       // display pop-up-message
       toast.info(`fetching weather for ${popUpMessage}`);
-      const data = await getFormattedWeather({ ...query, units });
-      if (data)
+      await getFormattedWeather({ ...query, units }).then((data) => {
+        // Fetch weather data and display success toast
         toast.success(
           `successfully fetched weather for ${data.name}, ${data.country}`
         );
-      setWeather(data);
+        setWeather(data);
+      });
     };
 
     fetchWeather();
   }, [query, units]);
 
+  // Determine background gradient based on temperature
   const setBackgroundTheme = () => {
     if (!weather)
       return {
         primaryBackground: "from-blue-500 to-blue-500",
         secondaryBackground: "from-cyan-600 to-blue-500",
       };
-    const threshold = units === "metric" ? 22 : 60;
+    const threshold = units === "metric" ? 30 : 70;
     if (weather.temp <= threshold)
       return {
         primaryBackground: "from-blue-500 to-blue-500",
@@ -67,16 +69,8 @@ const App = () => {
           {weather && (
             <>
               <DateAndTime weather={weather} />
-              <WeatherAndLocation
-                weather={weather}
-                error={error}
-                units={units}
-              />
-              <TemperatureAndDetails
-                weather={weather}
-                error={error}
-                units={units}
-              />
+              <WeatherAndLocation weather={weather} units={units} />
+              <TemperatureAndDetails weather={weather} units={units} />
             </>
           )}
         </div>

@@ -30,7 +30,7 @@ const App = () => {
       });
     };
 
-    fetchWeather();
+    // fetchWeather();
   }, [query, units]);
 
   // Determine background gradient based on temperature

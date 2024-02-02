@@ -1,5 +1,5 @@
 <h1>How to use the project </h1>  <br/>
-Clone <br/>
+Clone (git clone <url>) <br/>
 Install dependencies using (npm i) <br/>
 Get your API key from (https://api.openweathermap.org) and add to api.js <br/>
 open the terminal and run the command (npm run dev) <br/>

@@ -59,14 +59,4 @@ const formateToLocalTime = (
   formate = "ccc, dd LLL yyyy' | Local time: 'hh:mm a"
 ) => DateTime.fromSeconds(secs).setZone(zons).toFormat(formate);
 
-const searchCity = async (city) => {
-  const url = `${API.BASE}weather?q=${city}&appid=${API.API_KEY}`;
-
-  const response = await axios.get(url);
-  const {
-    name,
-    sys: { country },
-  } = response.data;
-  return `${name}, ${country}`;
-};
-export { iconUrlFromCode, formateToLocalTime, getFormattedWeather, searchCity };
+export { iconUrlFromCode, formateToLocalTime, getFormattedWeather };

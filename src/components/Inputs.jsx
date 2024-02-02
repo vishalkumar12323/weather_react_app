@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { UilSearch, UilLocationPoint } from "@iconscout/react-unicons";
 import { toast } from "react-toastify";
-import { SearchResult } from "./SearchResult";
 const Inputs = ({ units, setQuery, setUnits }) => {
   const [city, setCity] = useState("");
-  const [searchResult, setSearchResult] = useState([]);
 
   const handleOnChange = async (e) => {
     const { value } = e.currentTarget;
@@ -21,19 +19,20 @@ const Inputs = ({ units, setQuery, setUnits }) => {
   };
 
   const handleLocationClick = () => {
+    // fetching user current location.
+    toast.info("fetching user location");
     if (navigator.geolocation) {
-      // toast.info("Fetching users location.");
       navigator.geolocation.getCurrentPosition((position) => {
         let lat = position.coords.latitude;
         let lon = position.coords.longitude;
 
-        // toast.success("Location fetched!");
+        toast.success("successfully fetched user location");
         setQuery({ lat, lon });
       });
     }
   };
 
-  useEffect(() => {}, [city]);
+  // useEffect(() => {}, [city]);
   return (
     <>
       <div className="inputs-bar py-3 sm:py-1">
@@ -74,7 +73,6 @@ const Inputs = ({ units, setQuery, setUnits }) => {
           </div>
         </div>
       </div>
-      {city !== "" ? <SearchResult searchResult={searchResult} /> : null}
     </>
   );
 };

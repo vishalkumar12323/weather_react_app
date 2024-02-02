@@ -30,7 +30,7 @@ const App = () => {
       });
     };
 
-    // fetchWeather();
+    fetchWeather();
   }, [query, units]);
 
   // Determine background gradient based on temperature
@@ -55,12 +55,12 @@ const App = () => {
   return (
     <>
       <div
-        className={`bg-gradient-to-br ${
+        className={`bg-gradient-to-tr ${
           setBackgroundTheme().primaryBackground
         } w-full h-[100vh]`}
       >
         <div
-          className={`bg-gradient-to-tr ${
+          className={`bg-gradient-to-br ${
             setBackgroundTheme().secondaryBackground
           } shadow-lg text-white w-full h-full py-2 px-2 md:max-w-[768px] md:mx-auto`}
         >

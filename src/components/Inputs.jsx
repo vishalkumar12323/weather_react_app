@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { UilSearch, UilLocationPoint } from "@iconscout/react-unicons";
-import { searchCity } from "../services/Services";
 import { toast } from "react-toastify";
 import { SearchResult } from "./SearchResult";
 const Inputs = ({ units, setQuery, setUnits }) => {
   const [city, setCity] = useState("");
-  const [searchResult, setSearchResult] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
 
   const handleOnChange = async (e) => {
     const { value } = e.currentTarget;
@@ -34,22 +33,7 @@ const Inputs = ({ units, setQuery, setUnits }) => {
     }
   };
 
-  useEffect(() => {
-    const getResult = async () => {
-      await searchCity(city).then((value) => {
-        const regex = new RegExp(/^[a-zA-Z0-9]+$/);
-        const isMatch = regex.test(value);
-        if (isMatch) {
-          const words = regex.exec(value);
-          searchResult(words);
-        }
-      });
-    };
-    if (city.length == 3 || city.length == 6 || city.length == 9) {
-      // getResult();
-    }
-  }, [city]);
-  console.log(searchResult);
+  useEffect(() => {}, [city]);
   return (
     <>
       <div className="inputs-bar py-3 sm:py-1">
@@ -90,7 +74,7 @@ const Inputs = ({ units, setQuery, setUnits }) => {
           </div>
         </div>
       </div>
-      {city ? <SearchResult searchResult={searchResult} /> : null}
+      {city !== "" ? <SearchResult searchResult={searchResult} /> : null}
     </>
   );
 };

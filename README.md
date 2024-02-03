@@ -8,4 +8,5 @@ Leave a star ⭐ :)
 
 <h2>Demo</h2>
 
-![showWeather](https://github.com/vishalkumar12323/weather_react_app/images/137691442/5bcf1e01-5b8f-4c11-9db6-e6fdce45d4aa)
+![showWeather](https://github.com/vishalkumar12323/weather_react_app/assets/137691442/250992e3-7560-40ed-80bb-054c46fd1f6b)
+

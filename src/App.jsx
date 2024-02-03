@@ -29,7 +29,6 @@ const App = () => {
         setWeather(data);
       });
     };
-
     fetchWeather();
   }, [query, units]);
 

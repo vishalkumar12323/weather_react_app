@@ -1,5 +1,5 @@
 <h1>How to use the project </h1>  <br/>
-Clone (git clone <url>) <br/>
+Clone (git clone https://github.com/vishalkumar12323/weather_react_app) <br/>
 Install dependencies using (npm i) <br/>
 Get your API key from (https://api.openweathermap.org) and add to api.js <br/>
 open the terminal and run the command (npm run dev) <br/>

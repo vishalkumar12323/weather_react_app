@@ -2,7 +2,6 @@ import React from "react";
 import { formateToLocalTime } from "../services/Services";
 const DateAndTime = ({ weather }) => {
   const { dt, timezone } = weather;
-  console.log(dt);
   return (
     <>
       <div className="mt-1 py-1">
